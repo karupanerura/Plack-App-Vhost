@@ -32,12 +32,12 @@ Plack::App::Vhost is virtual host implementation on Plack.
     - `vhosts`
 
         Specify regex and PSGI application pairs in order of preference.
-        If `$env-`{HTTP\_HOST}> matches to the regexp, Executes PSGI application of the pair.
+        If `HTTP_HOST` matches to the regexp, Executes PSGI application of the pair.
 
     - `fallback`
 
         Specify fallback PSGI application.
-        If `$env-`{HTTP\_HOST}> does not match to any regexp, Executes fallback PSGI application.
+        If `HTTP_HOST` does not match to any regexp, Executes fallback PSGI application.
 
 - $vhost->to\_app()
 

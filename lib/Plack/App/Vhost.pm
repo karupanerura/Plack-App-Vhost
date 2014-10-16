@@ -74,12 +74,12 @@ Arguments can be:
 =item * C<vhosts>
 
 Specify regex and PSGI application pairs in order of preference.
-If C<$env->{HTTP_HOST}> matches to the regexp, Executes PSGI application of the pair.
+If C<HTTP_HOST> matches to the regexp, Executes PSGI application of the pair.
 
 =item * C<fallback>
 
 Specify fallback PSGI application.
-If C<$env->{HTTP_HOST}> does not match to any regexp, Executes fallback PSGI application.
+If C<HTTP_HOST> does not match to any regexp, Executes fallback PSGI application.
 
 =back
 
