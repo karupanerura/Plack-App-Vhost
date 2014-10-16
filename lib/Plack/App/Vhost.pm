@@ -38,7 +38,7 @@ __END__
 
 =head1 NAME
 
-Plack::App::Vhost - It's new $module
+Plack::App::Vhost - Simple virtual host implementation on Plack.
 
 =head1 SYNOPSIS
 
@@ -49,11 +49,49 @@ Plack::App::Vhost - It's new $module
           qr/^foo-mode\.my-app/ => $foo_app,
           qr/^bar-mode\.my-app/ => $bar_app,
        ],
+       fallback => sub {
+           my $env = shift;
+           open my $fh, '<', 'path/to/404.html';
+           return [404, ['Content-Type' => 'text/html', 'Content-Length' => -s $fh], [$fh]];
+       },
     )->to_app;
 
 =head1 DESCRIPTION
 
-Plack::App::Vhost is ...
+Plack::App::Vhost is virtual host implementation on Plack.
+
+=head1 METHODS
+
+=over
+
+=item my $vhost = Plack::App::Vhost->new(\%args)
+
+Creates a new Plack::App::Vhost instance.
+Arguments can be:
+
+=over
+
+=item * C<vhosts>
+
+Specify regex and PSGI application pairs in order of preference.
+If C<$env->{HTTP_HOST}> matches to the regexp, Executes PSGI application of the pair.
+
+=item * C<fallback>
+
+Specify fallback PSGI application.
+If C<$env->{HTTP_HOST}> does not match to any regexp, Executes fallback PSGI application.
+
+=back
+
+=item $vhost->to_app()
+
+Creates as a PSGI application.
+
+=back
+
+=head1 SEE ALSO
+
+L<Plack::App::HostMap>
 
 =head1 LICENSE
 

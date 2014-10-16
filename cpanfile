@@ -5,9 +5,7 @@ requires 'parent';
 requires 'perl', '5.008005';
 
 on configure => sub {
-    requires 'CPAN::Meta';
-    requires 'CPAN::Meta::Prereqs';
-    requires 'Module::Build';
+    requires 'Module::Build::Tiny', '0.035';
 };
 
 on test => sub {
