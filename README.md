@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/karupanerura/Plack-App-Vhost.svg?branch=master)](https://travis-ci.org/karupanerura/Plack-App-Vhost)
 # NAME
 
 Plack::App::Vhost - Simple virtual host implementation on Plack.
